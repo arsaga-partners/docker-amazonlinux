@@ -11,11 +11,13 @@ RUN yum -y install sudo
 RUN sudo yum -y install less
 
 #set japanese
-RUN sudo echo "LANG=ja_JP.UTF-8" > /etc/sysconfig/i18n
+ENV LANG ja_JP.UTF-8
+RUN localedef -i ja_JP -f UTF-8 ja_JP.UTF-8
+RUN echo 'LANG="ja_JP.UTF-8"' >  /etc/locale.conf
 RUN sudo  yum install -y man-pages-ja
 
 #Install git
 Run yum install -y git
 
 #Install aws-cli
-RUN yum install -y aws-cli 
+RUN yum install -y aws-cli
